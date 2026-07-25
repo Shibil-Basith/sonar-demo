@@ -1,6 +1,4 @@
-def add(a, b):
-    return a + b
+def divide(a, b):
+    return a / 0
 
-password = "admin123"
-
-print(add(10, 20))
+print(divide(10, 2))
