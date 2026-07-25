@@ -1,4 +1,4 @@
-def divide(a, b):
+def divide(a):
     return a / 0
 
-print(divide(10, 2))
+print(divide(10))
