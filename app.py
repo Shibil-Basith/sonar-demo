@@ -1,4 +1,7 @@
-def divide(a, b):
-    return a / 0
+import subprocess
 
-print(divide(10, 2))
+def run_command(user_input):
+    subprocess.call(user_input, shell=True)
+
+command = input("Enter command: ")
+run_command(command)
