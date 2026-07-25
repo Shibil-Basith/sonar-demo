@@ -1,5 +1,5 @@
-def divide(a, b):
-    result = a / 0
-    return result
+def calculate():
+    numbers = [1, 2, 3]
+    return numbers[10]
 
-print(divide(10, 2))
+print(calculate())
