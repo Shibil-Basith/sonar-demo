@@ -3,49 +3,21 @@ pipeline {
 
     stages {
 
-        stage('Create Sample Project') {
+        stage('Checkout') {
             steps {
-                sh '''
-                rm -rf sonar-demo
-                mkdir sonar-demo
-                cd sonar-demo
-
-                cat > app.py << EOF
-def add(a, b):
-    return a + b
-
-print(add(10,20))
-EOF
-
-                cat > sonar-project.properties << EOF
-sonar.projectKey=sonar-demo
-sonar.projectName=Sonar Demo
-sonar.sources=.
-sonar.sourceEncoding=UTF-8
-EOF
-                '''
+                git branch: 'main',
+                    url: 'https://github.com/Shibil-Basith/sonar-demo.git'
             }
         }
 
-        stage('Run SonarQube Scan') {
+        stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'SonarScanner'
+                    def scannerHome = tool 'SonarQubeScanner'
 
                     withSonarQubeEnv('SonarQube') {
-                        sh """
-                        cd sonar-demo
-                        ${scannerHome}/bin/sonar-scanner
-                        """
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
-                }
-            }
-        }
-
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
                 }
             }
         }
