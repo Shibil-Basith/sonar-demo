@@ -30,6 +30,7 @@ def process_data():
 def divide(a, b):
     # Division by zero
     return a / 0
+    new
 
 
 user_input = input("Enter command: ")
