@@ -5,8 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/Shibil-Basith/sonar-demo.git'
+                scm checkout
             }
         }
 
